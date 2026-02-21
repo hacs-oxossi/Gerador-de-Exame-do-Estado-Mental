@@ -2,15 +2,6 @@
 
 Gerador simples, estático e pronto para **GitHub Pages**, para montar o **Exame do Estado Mental** por seleções e observações curtas, e ao final gerar um **modelo integrado** com botão de **copiar**.
 
-## Como publicar no GitHub Pages
-
-1. Crie um repositório (ex.: `eem`).
-2. Faça upload deste projeto (ou envie via git).
-3. Vá em **Settings → Pages**.
-4. Em **Build and deployment**:
-   - **Source**: *Deploy from a branch*
-   - **Branch**: `main` / **Folder**: `/ (root)`
-5. Salve. O GitHub informará a URL do site.
 
 ## Como usar
 
