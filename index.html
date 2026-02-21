@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exame do Estado Mental — Rodrigo Carneiro</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 24px;
+  background: #f4f4f4;
+}
+
+h1 { margin-bottom: 4px; }
+.sub { color: #444; margin-top: 0; }
+
+.card {
+  background: #ffffff;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 16px;
+}
+
+h2 { margin-top: 0; }
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 12px;
+}
+
+select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+textarea { resize: vertical; min-height: 60px; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 800px) {
+  .row { grid-template-columns: 1fr; }
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary { background: #1f6feb; color: white; }
+.secondary { background: #eaeef2; }
+.danger { background: #ffeaea; color: #7a1f1f; }
+
+#resultado {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 16px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.status { font-size: 12px; margin-top: 8px; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Exame do Estado Mental</h1>
+<p class="sub">Ferramenta estruturada para elaboração clínica.</p>
+
+<div class="card">
+  <h2>Apresentação</h2>
+
+  <label for="apresentacao">Aparência / atitude</label>
+  <select id="apresentacao">
+    <option>Higiene preservada, vestimenta adequada, cooperativo</option>
+    <option>Contato visual intermitente, atitude reservada</option>
+    <option>Desleixo com higiene, pouco cooperativo</option>
+    <option>Hostil ou desconfiado</option>
+    <option>Hipomímico / indiferente</option>
+  </select>
+
+  <label for="apresentacao_obs">Observações</label>
+  <textarea id="apresentacao_obs" placeholder="Ex.: postura, contato visual, cooperação, comportamento bizarro..."></textarea>
+
+  <label for="fala">Fala / linguagem</label>
+  <select id="fala">
+    <option>Fala espontânea, ritmo adequado</option>
+    <option>Fala hipofônica</option>
+    <option>Bradifasia</option>
+    <option>Pressão de fala / logorreia</option>
+    <option>Mutismo</option>
+  </select>
+
+  <label for="fala_obs">Observações</label>
+  <textarea id="fala_obs" placeholder="Ex.: latência aumentada, tangencialidade, neologismos..."></textarea>
+</div>
+
+<div class="card">
+  <h2>Estado Mental</h2>
+
+  <label for="consciencia">Consciência</label>
+  <select id="consciencia">
+    <option>Vigil</option>
+    <option>Obnubilado</option>
+    <option>Torporoso</option>
+    <option>Comatoso</option>
+  </select>
+
+  <label for="orientacao">Orientação</label>
+  <select id="orientacao">
+    <option>Orientado em tempo, espaço, pessoa e situação</option>
+    <option>Desorientado no tempo</option>
+    <option>Desorientado em tempo e espaço</option>
+    <option>Desorientado globalmente</option>
+  </select>
+
+  <label for="orientacao_obs">Observações</label>
+  <textarea id="orientacao_obs" placeholder="Ex.: erra data; reconhece local, mas não sabe motivo da consulta..."></textarea>
+
+  <label for="psicomotricidade">Psicomotricidade</label>
+  <select id="psicomotricidade">
+    <option>Normocinético</option>
+    <option>Lentificação psicomotora</option>
+    <option>Agitação psicomotora</option>
+    <option>Catatonia</option>
+  </select>
+
+  <label for="psicomotricidade_obs">Observações</label>
+  <textarea id="psicomotricidade_obs" placeholder="Ex.: inquieto, andar de um lado para outro, rigidez..."></textarea>
+
+  <div class="row">
+    <div>
+      <label for="humor">Humor</label>
+      <select id="humor">
+        <option>Eutímico</option>
+        <option>Depressivo</option>
+        <option>Ansioso</option>
+        <option>Irritável</option>
+        <option>Expansivo</option>
+      </select>
+
+      <label for="humor_obs">Observações</label>
+      <textarea id="humor_obs" placeholder="Ex.: anedonia, desesperança, tensão somática..."></textarea>
+    </div>
+
+    <div>
+      <label for="afeto">Afeto</label>
+      <select id="afeto">
+        <option>Congruente e ressonante</option>
+        <option>Congruente e pouco ressonante</option>
+        <option>Incongruente</option>
+        <option>Embotado</option>
+        <option>Lábel</option>
+      </select>
+
+      <label for="afeto_obs">Observações</label>
+      <textarea id="afeto_obs" placeholder="Ex.: reatividade diminuída, pouca variação expressiva..."></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label for="curso">Pensamento — curso (forma)</label>
+      <select id="curso">
+        <option>Curso normal</option>
+        <option>Bradipsíquico</option>
+        <option>Taquipsíquico</option>
+        <option>Fuga de ideias</option>
+        <option>Bloqueio</option>
+        <option>Perseveração</option>
+      </select>
+
+      <label for="curso_obs">Observações</label>
+      <textarea id="curso_obs" placeholder="Ex.: perde o fio da meada, circunstancialidade..."></textarea>
+    </div>
+
+    <div>
+      <label for="conteudo">Pensamento — conteúdo</label>
+      <select id="conteudo">
+        <option>Sem conteúdo delirante</option>
+        <option>Ideação delirante</option>
+        <option>Ideação paranoide</option>
+        <option>Ideação suicida</option>
+        <option>Ideação obsessiva</option>
+        <option>Ideias de referência</option>
+      </select>
+
+      <label for="conteudo_obs">Observações</label>
+      <textarea id="conteudo_obs" placeholder="Ex.: culpa/ruína; plano suicida (método, acesso, intenção); rituais..."></textarea>
+    </div>
+  </div>
+
+  <label for="percepcao">Percepção</label>
+  <select id="percepcao">
+    <option>Nega alterações perceptivas</option>
+    <option>Alucinações auditivas</option>
+    <option>Alucinações visuais</option>
+    <option>Ilusões</option>
+    <option>Despersonalização</option>
+    <option>Desrealização</option>
+  </select>
+
+  <label for="percepcao_obs">Observações</label>
+  <textarea id="percepcao_obs" placeholder="Ex.: vozes em 2ª pessoa, imperativas; frequência; sofrimento; crítica..."></textarea>
+
+  <div class="row">
+    <div>
+      <label for="vontade">Vontade</label>
+      <select id="vontade">
+        <option>Normobulia</option>
+        <option>Hipobulia</option>
+        <option>Abulia</option>
+      </select>
+
+      <label for="vontade_obs">Observações</label>
+      <textarea id="vontade_obs" placeholder="Ex.: dificuldade de iniciar tarefas, apatia..."></textarea>
+    </div>
+
+    <div>
+      <label for="juizo">Juízo crítico</label>
+      <select id="juizo">
+        <option>Preservado</option>
+        <option>Parcialmente comprometido</option>
+        <option>Prejudicado</option>
+      </select>
+
+      <label for="juizo_obs">Observações</label>
+      <textarea id="juizo_obs" placeholder="Ex.: minimiza gravidade, decisões impulsivas, pouca aderência..."></textarea>
+    </div>
+  </div>
+
+  <label for="insight">Insight</label>
+  <select id="insight">
+    <option>Presente</option>
+    <option>Parcial</option>
+    <option>Ausente</option>
+  </select>
+
+  <label for="insight_obs">Observações</label>
+  <textarea id="insight_obs" placeholder="Ex.: reconhece sintomas, mas atribui a causas externas..."></textarea>
+
+</div>
+
+<div class="actions">
+  <button class="primary" id="btnGerarECopiar">Gerar e copiar automaticamente</button>
+  <button class="secondary" id="btnCopiar" disabled>Copiar</button>
+  <button class="danger" id="btnLimpar">Limpar</button>
+</div>
+
+<div class="status" id="status"></div>
+
+<h2>Modelo Final Integrado</h2>
+<div id="resultado"></div>
+
+<footer>
+  Criado por Rodrigo Carneiro. Uso exclusivo para fins educacionais. 2026.
+</footer>
+
+<script>
+function clean(s) { return (s || "").trim().replace(/\s+/g, " "); }
+
+function addObs(prefix, value) {
+  const v = clean(value);
+  return v ? (prefix + ": " + v + ".") : "";
+}
+
+function gerarTexto() {
+  const parts = [];
+
+  parts.push("Apresentação: " + apresentacao.value + ".");
+  const apObs = addObs("Apresentação (obs)", apresentacao_obs.value);
+  if (apObs) parts.push(apObs);
+
+  parts.push("Fala/linguagem: " + fala.value + ".");
+  const falaObs = addObs("Fala/linguagem (obs)", fala_obs.value);
+  if (falaObs) parts.push(falaObs);
+
+  parts.push(consciencia.value + ", " + orientacao.value + ".");
+  const oriObs = addObs("Orientação (obs)", orientacao_obs.value);
+  if (oriObs) parts.push(oriObs);
+
+  parts.push("Psicomotricidade: " + psicomotricidade.value + ".");
+  const psiObs = addObs("Psicomotricidade (obs)", psicomotricidade_obs.value);
+  if (psiObs) parts.push(psiObs);
+
+  parts.push("Humor " + humor.value + ", afeto " + afeto.value + ".");
+  const humObs = addObs("Humor (obs)", humor_obs.value);
+  if (humObs) parts.push(humObs);
+  const afeObs = addObs("Afeto (obs)", afeto_obs.value);
+  if (afeObs) parts.push(afeObs);
+
+  parts.push("Pensamento: " + curso.value + ", " + conteudo.value + ".");
+  const curObs = addObs("Pensamento — curso (obs)", curso_obs.value);
+  if (curObs) parts.push(curObs);
+  const conObs = addObs("Pensamento — conteúdo (obs)", conteudo_obs.value);
+  if (conObs) parts.push(conObs);
+
+  parts.push("Percepção: " + percepcao.value + ".");
+  const perObs = addObs("Percepção (obs)", percepcao_obs.value);
+  if (perObs) parts.push(perObs);
+
+  parts.push(vontade.value + ".");
+  const vonObs = addObs("Vontade (obs)", vontade_obs.value);
+  if (vonObs) parts.push(vonObs);
+
+  parts.push("Juízo crítico " + juizo.value + ", insight " + insight.value + ".");
+  const juiObs = addObs("Juízo crítico (obs)", juizo_obs.value);
+  if (juiObs) parts.push(juiObs);
+  const insObs = addObs("Insight (obs)", insight_obs.value);
+  if (insObs) parts.push(insObs);
+
+  return parts.join(" ");
+}
+
+function setResultado(texto) {
+  resultado.textContent = texto;
+  btnCopiar.disabled = !texto.trim();
+}
+
+async function copiarTexto(texto) {
+  try {
+    await navigator.clipboard.writeText(texto);
+    status.textContent = "Copiado para a área de transferência.";
+    return true;
+  } catch (e) {
+    status.textContent = "Não foi possível copiar automaticamente (restrição do navegador). Selecione e copie manualmente.";
+    return false;
+  }
+}
+
+async function gerarECopiar() {
+  const texto = gerarTexto();
+  setResultado(texto);
+  await copiarTexto(texto);
+}
+
+function copiar() {
+  if (!resultado.textContent.trim()) return;
+  copiarTexto(resultado.textContent);
+}
+
+function limpar() {
+  document.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+  document.querySelectorAll("textarea").forEach(t => t.value = "");
+  setResultado("");
+  status.textContent = "";
+}
+
+btnGerarECopiar.addEventListener("click", gerarECopiar);
+btnCopiar.addEventListener("click", copiar);
+btnLimpar.addEventListener("click", limpar);
+
+// Gera automaticamente ao mudar seleções (opcional, útil no dia a dia)
+document.querySelectorAll("select").forEach(el => el.addEventListener("change", () => {
+  const texto = gerarTexto();
+  setResultado(texto);
+  status.textContent = "";
+}));
+
+// Para observações, atualiza ao sair do campo
+document.querySelectorAll("textarea").forEach(el => el.addEventListener("blur", () => {
+  const texto = gerarTexto();
+  setResultado(texto);
+  status.textContent = "";
+}));
+
+// Inicial
+setResultado(gerarTexto());
+</script>
+
+</body>
+</html>
